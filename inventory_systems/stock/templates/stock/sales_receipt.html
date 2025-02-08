@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Sales Receipt{% endblock %}
+{% block content %}
+<div class="receipt-container" style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd;">
+    <h2 style="text-align: center;">Sales Receipt</h2>
+    <hr>
+    <p><strong>Sale ID:</strong> {{ sale.id }}</p>
+    <p><strong>Product:</strong> {{ sale.product.name }}</p>
+    <p><strong>Quantity Sold:</strong> {{ sale.quantity }}</p>
+    <p><strong>Transaction Type:</strong> {{ sale.transaction_type|capfirst }}</p>
+    <p><strong>Timestamp:</strong> {{ sale.timestamp|date:"Y-m-d H:i" }}</p>
+    <p><strong>Recorded By:</strong> {{ sale.created_by.username }}</p>
+    <hr>
+    <div style="text-align: center;">
+        <!-- Print Button -->
+        <button type="button" onclick="window.print();">Print Receipt</button>
+        <!-- Back to Sales Link -->
+        <a href="{% url 'manage_sales' %}" style="margin-left: 10px;">Back to Sales</a>
+    </div>
+</div>
+
+<!-- Print-Specific CSS -->
+<style>
+@media print {
+    /* Hide navigation, buttons, and links when printing */
+    nav, button, a { 
+        display: none !important;
+    }
+    .receipt-container {
+        border: none;
+        margin: 0;
+        width: 100%;
+    }
+}
+</style>
+{% endblock %}
+

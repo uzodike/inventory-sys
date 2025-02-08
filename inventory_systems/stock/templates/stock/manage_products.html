@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Manage Products{% endblock %}
+{% block content %}
+<h2>Manage Products</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Product</button>
+</form>
+
+<h3>Existing Products</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Expiry Date</th>
+            <th>Low Stock Threshold</th>
+            <th>Low Stock?</th>
+            <th>Expired?</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.category.name }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>${{ product.price }}</td>
+            <td>{{ product.expiry_date }}</td>
+            <td>{{ product.low_stock_threshold }}</td>
+            <td>{% if product.is_low_stock %}Yes{% else %}No{% endif %}</td>
+            <td>{% if product.is_expired %}Yes{% else %}No{% endif %}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="8">No products available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Manage Sales{% endblock %}
+{% block content %}
+<h2>Record a Sale</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Sale</button>
+</form>
+
+<h3>Recent Sales Transactions</h3>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity Sold</th>
+            <th>Time</th>
+            <th>Recorded By</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for trans in transactions %}
+        <tr>
+            <td>{{ trans.product.name }}</td>
+            <td>{{ trans.quantity }}</td>
+            <td>{{ trans.timestamp }}</td>
+            <td>{{ trans.created_by.username }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No sales recorded yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,10 @@
+Transaction 1: sale of 2 units on product 1 by user uz
+Transaction 2:  of 3 units on product 2 by user uz
+Transaction 3: sale of 2 units on product 2 by user uz
+Transaction 4: sale of 1 units on product 1 by user uz
+Transaction 5: restock of 20 units on product 2 by user uz
+Transaction 6: sale of 1 units on product 2 by user uz
+Transaction 6: sale of 1 units on product 2 by user uz
+Transaction 6: sale of 1 units on product 2 by user uz
+Transaction 6: sale of 1 units on product 2 by user uz
+Transaction 7: sale of 1 units on product 3 by user uz
